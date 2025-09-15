@@ -8,10 +8,10 @@
 
       <!-- Menu (desktop) -->
       <ul class="hidden md:flex flex-1 justify-center space-x-12 text-[#FBFADA] text-lg">
-        <li><a href="#" class="hover:text-[#A6B37D] transition">Home</a></li>
-        <li><a href="#" class="hover:text-[#A6B37D] transition">Menu</a></li>
-        <li><a href="#" class="hover:text-[#A6B37D] transition">About</a></li>
-        <li><a href="#" class="hover:text-[#A6B37D] transition">Shop</a></li>
+        <li><router-link to="/" class="hover:text-[#A6B37D] transition">Home</router-link></li>
+        <li><router-link to="/menu" class="hover:text-[#A6B37D] transition">Menu</router-link></li>
+        <li><router-link to="/about" class="hover:text-[#A6B37D] transition">About</router-link></li>
+        <li><router-link to="/shop" class="hover:text-[#A6B37D] transition">Shop</router-link></li>
       </ul>
 
       <!-- Mobile burger button -->
@@ -30,10 +30,10 @@
     <!-- Mobile menu -->
     <div v-if="isOpen" class="md:hidden mt-4">
       <ul class="flex flex-col items-center space-y-4 text-[#FBFADA] text-lg">
-        <li><a href="#" class="hover:text-[#A6B37D] transition">Home</a></li>
-        <li><a href="#" class="hover:text-[#A6B37D] transition">Menu</a></li>
-        <li><a href="#" class="hover:text-[#A6B37D] transition">About</a></li>
-        <li><a href="#" class="hover:text-[#A6B37D] transition">Shop</a></li>
+        <li><router-link to="/" class="hover:text-[#A6B37D] transition">Home</router-link></li>
+        <li><router-link to="/menu" class="hover:text-[#A6B37D] transition">Menu</router-link></li>
+        <li><router-link to="/about" class="hover:text-[#A6B37D] transition">About</router-link></li>
+        <li><router-link to="/shop" class="hover:text-[#A6B37D] transition">Shop</router-link></li>
       </ul>
     </div>
   </nav>
