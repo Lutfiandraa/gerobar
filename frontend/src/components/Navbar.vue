@@ -16,32 +16,45 @@
 
       <!-- Mobile burger button -->
       <button
-        @click="isOpen = !isOpen"
-        class="md:hidden text-[#FBFADA] focus:outline-none"
+        @click="toggleMenu"
+        class="md:hidden text-[#FBFADA] focus:outline-none transition-transform duration-300"
+        :class="{ 'rotate-90': isOpen, 'rotate-0': !isOpen }"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-             stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16m-7 6h7"/>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
         </svg>
       </button>
     </div>
 
     <!-- Mobile menu -->
-    <div v-if="isOpen" class="md:hidden mt-4">
-      <ul class="flex flex-col items-center space-y-4 text-[#FBFADA] text-lg">
-        <li><router-link to="/" class="hover:text-[#A6B37D] transition">Home</router-link></li>
-        <li><router-link to="/menu" class="hover:text-[#A6B37D] transition">Menu</router-link></li>
-        <li><router-link to="/about" class="hover:text-[#A6B37D] transition">About</router-link></li>
-        <li><router-link to="/shop" class="hover:text-[#A6B37D] transition">Shop</router-link></li>
-      </ul>
-    </div>
+    <transition
+      enter-active-class="transition-opacity duration-500 ease-in-out"
+      leave-active-class="transition-opacity duration-500 ease-in-out"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+    >
+      <div v-if="isOpen" class="md:hidden mt-4">
+        <ul class="flex flex-col items-center space-y-4 text-[#FBFADA] text-lg">
+          <li><router-link to="/" class="hover:text-[#A6B37D] transition">Home</router-link></li>
+          <li><router-link to="/menu" class="hover:text-[#A6B37D] transition">Menu</router-link></li>
+          <li><router-link to="/about" class="hover:text-[#A6B37D] transition">About</router-link></li>
+          <li><router-link to="/shop" class="hover:text-[#A6B37D] transition">Shop</router-link></li>
+        </ul>
+      </div>
+    </transition>
   </nav>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue';
+
 const isOpen = ref(false);
+
+function toggleMenu() {
+  isOpen.value = !isOpen.value;
+}
 </script>
 
 <style scoped>

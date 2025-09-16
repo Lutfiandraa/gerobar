@@ -18,12 +18,12 @@
 
     <!-- Menu Grid -->
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 justify-items-center"
+      class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center"
     >
       <div
         v-for="(img, index) in menuImages"
         :key="index"
-        class="w-[202px] h-[200px] bg-[#FBFADA] rounded-[22px] shadow-lg flex items-center justify-center overflow-hidden opacity-0 animate-fadeInUp"
+        class="w-[150px] h-[150px] sm:w-[202px] sm:h-[200px] bg-[#FBFADA] rounded-[22px] shadow-lg flex items-center justify-center overflow-hidden opacity-0 animate-fadeInUp"
         :style="`animation-delay: ${0.2 * (index + 1) + 0.3}s`"
       >
         <img
