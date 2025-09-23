@@ -1,7 +1,8 @@
 <template>
   <div class="min-h-screen bg-[#664A00] text-[#FBFADA] font-sansita relative overflow-hidden">
     <!-- Pola latar belakang -->
-    <div class="absolute inset-0 bg-repeat bg-[url('@/assets/pattern.png')] opacity-50"></div>
+ <div class="absolute inset-0 bg-gradient-to-br from-[#664A00]/20 to-transparent opacity-50"></div>
+
 
     <!-- Bagian tentang Gerobar -->
     <div class="flex flex-col items-center justify-center pt-20 px-4 sm:px-6 md:px-10">
