@@ -8,8 +8,10 @@
       >
         Gerobar
       </h1>
+
+      <!-- Subjudul pakai Poppins -->
       <p
-        class="text-2xl text-[#A6B37D] mt-2 opacity-0 animate-fadeInUp"
+        class="text-2xl text-[#A6B37D] mt-2 font-poppins opacity-0 animate-fadeInUp"
         style="animation-delay: 0.3s"
       >
         Roti Bakar & Pancong Lumer
@@ -34,16 +36,27 @@
       </div>
     </div>
 
-    <!-- More Menu Button -->
+    <!-- More Menu Button navigasi ke Shop -->
     <div
       class="flex justify-center mt-16 opacity-0 animate-fadeInUp"
       style="animation-delay: 2.2s"
     >
-      <button
-        class="mt-8 md:mt-10 px-6 py-3 bg-[#F6F6F6] text-[#664A00] font-lexend font-semibold rounded-xl shadow-md hover:bg-[#D9D9D9] transition opacity-0 animate-fadeInUp"
+      <router-link
+        to="/shop"
+        class="mt-8 md:mt-10 px-8 py-4 
+               rounded-2xl 
+               font-poppins font-semibold 
+               text-[#EDEDED] 
+               bg-[#A67C00]/30 
+               border border-[#EDEDED]/40 
+               backdrop-blur-md
+               shadow-lg
+               hover:bg-[#A67C00]/50 hover:text-white 
+               transition duration-300 
+               inline-block text-center"
       >
         More Menu
-      </button>
+      </router-link>
     </div>
   </div>
 </template>

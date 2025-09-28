@@ -13,7 +13,7 @@
       </h1>
 
       <p
-        class="text-xl md:text-2xl mt-4 text-[#A6B37D] opacity-0 animate-fadeInUp"
+        class="text-xl md:text-2xl mt-4 text-[#A6B37D] font-poppins opacity-0 animate-fadeInUp"
         style="animation-delay:0.4s"
       >
         Roti Bakar & Pancong Lumer
@@ -70,13 +70,25 @@
         </div>
       </div>
 
-      <!-- CTA button -->
-      <button
-        class="mt-8 md:mt-10 px-6 py-3 bg-[#F6F6F6] text-[#664A00] font-lexend font-semibold rounded-xl shadow-md hover:bg-[#D9D9D9] transition opacity-0 animate-fadeInUp"
+      <!-- CTA button -> Navigasi ke Shop -->
+      <router-link
+        to="/shop"
+        class="mt-8 md:mt-10 px-8 py-4 
+               rounded-2xl 
+               font-poppins font-semibold 
+               text-[#EDEDED] 
+               bg-[#A67C00]/30 
+               border border-[#EDEDED]/40 
+               backdrop-blur-md
+               shadow-lg
+               hover:bg-[#A67C00]/50 hover:text-white 
+               transition duration-300 
+               opacity-0 animate-fadeInUp
+               inline-block text-center"
         style="animation-delay:1s"
       >
         Order Now
-      </button>
+      </router-link>
     </div>
 
     <!-- Hero Image (DESKTOP only) -->
@@ -95,3 +107,23 @@
     </div>
   </section>
 </template>
+
+<script setup>
+// Tidak ada script khusus di sini, router-link otomatis bekerja
+</script>
+
+<style scoped>
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease forwards;
+}
+</style>
