@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-[#664A00] text-[#FBFADA] font-sansita relative overflow-hidden">
+  <div class="min-h-screen bg-[#2C1810] text-[#FBFADA] font-sansita relative overflow-x-hidden">
     <!-- Navbar selalu ada -->
     <Navbar />
     

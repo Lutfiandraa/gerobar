@@ -1,73 +1,110 @@
 <template>
-  <!-- Melting Chocolate Background -->
-  <div class="chocolate-melt-bg fixed inset-0 overflow-hidden pointer-events-none" style="z-index: 0;">
-    <div class="melt-blob melt-blob-1"></div>
-    <div class="melt-blob melt-blob-2"></div>
-    <div class="melt-blob melt-blob-3"></div>
-    <div class="melt-blob melt-blob-4"></div>
-    <div class="melt-blob melt-blob-5"></div>
-    <div class="melt-blob melt-blob-6"></div>
-  </div>
+  <!-- Page Background -->
+  <div class="page-bg fixed inset-0 overflow-hidden pointer-events-none" style="z-index: 0;"></div>
 
-  <div class="min-h-screen text-[#FBFADA] font-sansita px-8 py-16 relative overflow-hidden">
-    <!-- Content -->
-    <div class="relative" style="z-index: 1;">
-      <!-- Title -->
-      <div class="text-center mb-16">
-        <h1
-          class="text-7xl font-bold opacity-0 animate-fadeInUp"
-          style="animation-delay: 0.1s"
-        >
+  <div class="min-h-screen text-[#FBFADA] font-sansita relative overflow-x-hidden">
+    <div class="relative container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-10 sm:py-12 md:py-20 pb-8" style="z-index: 1;">
+      <!-- Section: Hero (Judul + Gambar + Tab) -->
+      <header class="menu-hero text-center mb-10 md:mb-16">
+        <h1 class="text-4xl md:text-6xl font-bold opacity-0 animate-fadeInUp" style="animation-delay: 0.1s">
           Gerobar
         </h1>
-
-        <!-- Subjudul pakai Poppins -->
-        <p
-          class="text-2xl text-[#A6B37D] mt-2 font-poppins opacity-0 animate-fadeInUp"
-          style="animation-delay: 0.3s"
-        >
+        <p class="text-xl md:text-2xl text-[#A6B37D] mt-4 font-poppins opacity-0 animate-fadeInUp" style="animation-delay: 0.2s">
           Roti Bakar & Pancong Lumer
         </p>
-      </div>
-
-      <!-- Menu Grid -->
-      <div
-        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center"
-      >
-        <div
-          v-for="(img, index) in menuImages"
-          :key="index"
-          class="w-[150px] h-[150px] sm:w-[202px] sm:h-[200px] bg-[#FBFADA] rounded-[22px] shadow-lg flex items-center justify-center overflow-hidden opacity-0 animate-fadeInUp image-container"
-          :style="`animation-delay: ${0.2 * (index + 1) + 0.3}s`"
-        >
-          <img
-            :src="img"
-            alt="Menu Item"
-            class="w-full h-full object-cover image-hover"
-          />
+        <div class="flex justify-center mt-8 sm:mt-10 opacity-0 animate-fadeInUp" style="animation-delay: 0.25s">
+          <div class="w-[100px] sm:w-[130px] md:w-[160px]">
+            <img
+              src="@/assets/main.png"
+              alt="Gerobar Roti Bakar"
+              class="w-full h-auto object-contain drop-shadow-md rounded-xl"
+            />
+          </div>
         </div>
-      </div>
+        <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8 sm:mt-10 mb-6 font-poppins opacity-0 animate-fadeInUp" style="animation-delay: 0.3s">
+          <button
+            v-for="tab in tabs"
+            :key="tab.id"
+            @click="activeTab = tab.id"
+            class="px-5 sm:px-8 py-3 rounded-full text-sm font-medium transition min-h-[44px]"
+            :class="activeTab === tab.id
+              ? 'bg-[#FBFADA] text-[#2C1810]'
+              : 'bg-[#FBFADA]/20 text-[#FBFADA] hover:bg-[#FBFADA]/30'"
+          >
+            {{ tab.label }}
+          </button>
+        </div>
+      </header>
 
-      <!-- More Menu Button navigasi ke Shop -->
-      <div
-        class="flex justify-center mt-16 opacity-0 animate-fadeInUp"
-        style="animation-delay: 2.2s"
-      >
+      <!-- Roti Bakar Section -->
+      <section v-show="activeTab === 'roti'" class="mt-8 sm:mt-12 mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold border-b border-[#FBFADA]/30 pb-2 mb-8 font-sansita">
+          Roti Bakar
+        </h2>
+        <p class="text-[#FBFADA]/80 font-poppins mb-10">
+          Roti panggang kami dengan beragam olesan manis dan gurih. Disajikan hangat dan renyah.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          <article
+            v-for="(item, index) in rotiBakarItems"
+            :key="item.id"
+            class="bg-[#FBFADA]/10 backdrop-blur-sm rounded-2xl overflow-hidden border border-[#FBFADA]/20 opacity-0 animate-fadeInUp group"
+            :style="`animation-delay: ${0.1 * (index + 1) + 0.2}s`"
+          >
+            <div class="aspect-square overflow-hidden bg-[#2C1810]/30">
+              <img
+                :src="item.image"
+                :alt="item.name"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-4 md:p-5">
+              <h3 class="font-bold text-lg text-[#FBFADA] font-poppins">{{ item.name }}</h3>
+              <p class="text-sm text-[#FBFADA]/80 font-poppins mt-1 leading-relaxed">{{ item.caption }}</p>
+              <p class="text-xs text-[#A6B37D] font-poppins mt-2">{{ item.ingredients }}</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Pancong Section -->
+      <section v-show="activeTab === 'pancong'" class="mt-8 sm:mt-12 mb-16">
+        <h2 class="text-2xl md:text-3xl font-bold border-b border-[#FBFADA]/30 pb-2 mb-8 font-sansita">
+          Pancong Lumer
+        </h2>
+        <p class="text-[#FBFADA]/80 font-poppins mb-10">
+          Pancong lembut dan hangat dengan topping yang meleleh. Camilan manis nan menggugah selera.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          <article
+            v-for="(item, index) in pancongItems"
+            :key="item.id"
+            class="bg-[#FBFADA]/10 backdrop-blur-sm rounded-2xl overflow-hidden border border-[#FBFADA]/20 opacity-0 animate-fadeInUp group"
+            :style="`animation-delay: ${0.1 * (index + 1) + 0.2}s`"
+          >
+            <div class="aspect-square overflow-hidden bg-[#2C1810]/30">
+              <img
+                :src="item.image"
+                :alt="item.name"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-4 md:p-5">
+              <h3 class="font-bold text-lg text-[#FBFADA] font-poppins">{{ item.name }}</h3>
+              <p class="text-sm text-[#FBFADA]/80 font-poppins mt-1 leading-relaxed">{{ item.caption }}</p>
+              <p class="text-xs text-[#A6B37D] font-poppins mt-2">{{ item.ingredients }}</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <div class="text-center mt-12">
         <router-link
           to="/shop"
-          class="mt-8 md:mt-10 px-8 py-4 
-                 rounded-2xl 
-                 font-poppins font-semibold 
-                 text-[#EDEDED] 
-                 bg-[#A67C00]/30 
-                 border border-[#EDEDED]/40 
-                 backdrop-blur-md
-                 shadow-lg
-                 hover:bg-[#A67C00]/50 hover:text-white 
-                 transition duration-300 
-                 inline-block text-center"
+          class="inline-block px-8 py-4 rounded-full font-poppins font-semibold text-[#2C1810] bg-[#FBFADA] hover:bg-[#FBFADA]/90 transition duration-300 shadow-lg"
         >
-          More Menu
+          Pesan & Ambil
         </router-link>
       </div>
     </div>
@@ -75,15 +112,96 @@
 </template>
 
 <script setup>
-const menuImages = [
-  new URL('@/assets/blueberry.jpg', import.meta.url).href,
-  new URL('@/assets/chcocrunchy.jpg', import.meta.url).href,
-  new URL('@/assets/cheese.jpg', import.meta.url).href,
-  new URL('@/assets/lotus.jpg', import.meta.url).href,
-  new URL('@/assets/peanut.jpg', import.meta.url).href,
-  new URL('@/assets/greentea.jpg', import.meta.url).href,
-  new URL('@/assets/tiramisu.jpg', import.meta.url).href,
-  new URL('@/assets/strawberry.jpg', import.meta.url).href,
+import { ref } from 'vue';
+
+const activeTab = ref('roti');
+
+const tabs = [
+  { id: 'roti', label: 'Roti Bakar' },
+  { id: 'pancong', label: 'Pancong Lumer' },
+];
+
+const rotiBakarItems = [
+  {
+    id: 'lotus',
+    name: 'Lotus Biscoff',
+    image: new URL('@/assets/lotus.jpg', import.meta.url).href,
+    caption: 'Roti bakar dengan Lotus Biscoff spread. Rasa caramel dan cinnamon yang khas.',
+    ingredients: 'Roti bakar, Lotus Biscoff spread (biskuit, karamel, kayu manis, mentega).',
+  },
+  {
+    id: 'tiramisu',
+    name: 'Tiramisu Crunchy',
+    image: new URL('@/assets/tiramisu.jpg', import.meta.url).href,
+    caption: 'Perpaduan tiramisu dengan tekstur crunchy. Nikmat untuk pecinta kopi.',
+    ingredients: 'Roti bakar, mascarpone, espresso, bubuk cokelat, potongan renyah.',
+  },
+  {
+    id: 'choco',
+    name: 'Choco Crunchy Spread',
+    image: new URL('@/assets/chcocrunchy.jpg', import.meta.url).href,
+    caption: 'Cokelat lumer dengan topping crunchy. Manis dan renyah.',
+    ingredients: 'Roti bakar, olesan cokelat, pearl renyah (cokelat, gula).',
+  },
+  {
+    id: 'blueberry',
+    name: 'Blueberry',
+    image: new URL('@/assets/blueberry.jpg', import.meta.url).href,
+    caption: 'Roti bakar dengan selai blueberry. Segar dan sedikit asam.',
+    ingredients: 'Roti bakar, kompot blueberry, krim keju, mentega.',
+  },
+  {
+    id: 'cheese',
+    name: 'Cheese',
+    image: new URL('@/assets/cheese.jpg', import.meta.url).href,
+    caption: 'Keju leleh di atas roti bakar. Gurih dan lezat.',
+    ingredients: 'Roti bakar, keju leleh, mentega.',
+  },
+  {
+    id: 'peanut',
+    name: 'Peanut',
+    image: new URL('@/assets/peanut.jpg', import.meta.url).href,
+    caption: 'Selai kacang dengan aroma roasted. Gurih dan mengenyangkan.',
+    ingredients: 'Roti bakar, selai kacang, madu, kacang sangrai.',
+  },
+  {
+    id: 'greentea',
+    name: 'Green Tea',
+    image: new URL('@/assets/greentea.jpg', import.meta.url).href,
+    caption: 'Matcha dan white chocolate. Lembut dan tidak terlalu manis.',
+    ingredients: 'Roti bakar, matcha, cokelat putih, krim.',
+  },
+  {
+    id: 'strawberry',
+    name: 'Strawberry',
+    image: new URL('@/assets/strawberry.jpg', import.meta.url).href,
+    caption: 'Strawberry segar dengan cream. Manis dan segar.',
+    ingredients: 'Roti bakar, stroberi, krim, olesan manis.',
+  },
+];
+
+const pancongItems = [
+  {
+    id: 'milo',
+    name: 'Pancong Milo',
+    image: new URL('@/assets/pancong1.jpg', import.meta.url).href,
+    caption: 'Pancong lumer dengan Milo. Rasa cokelat malt yang khas dan manis.',
+    ingredients: 'Pancong, Milo (bubuk cokelat malt), susu kental manis, mentega.',
+  },
+  {
+    id: 'keju-susu',
+    name: 'Pancong Keju Susu Klasik',
+    image: new URL('@/assets/pancong2.jpg', import.meta.url).href,
+    caption: 'Pancong klasik dengan keju leleh dan susu. Gurih dan legit.',
+    ingredients: 'Pancong, keju, susu kental manis, mentega.',
+  },
+  {
+    id: 'coklat-keju',
+    name: 'Pancong Coklat Keju',
+    image: new URL('@/assets/pancong3.jpg', import.meta.url).href,
+    caption: 'Perpaduan cokelat dan keju leleh. Manis dan gurih berpadu.',
+    ingredients: 'Pancong, cokelat, keju, susu kental manis, mentega.',
+  },
 ];
 </script>
 
@@ -107,210 +225,7 @@ const menuImages = [
   animation: fadeInUp 0.8s ease forwards;
 }
 
-/* Melting Chocolate Background */
-.chocolate-melt-bg {
-  background: transparent;
-}
-
-.melt-blob {
-  position: absolute;
-  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  filter: blur(30px);
-  opacity: 0.7;
-  will-change: transform, border-radius;
-}
-
-.melt-blob-1 {
-  width: 450px;
-  height: 450px;
-  top: -50px;
-  left: -50px;
-  animation: meltBlob1 9s ease-in-out infinite;
-  animation-delay: 0s;
-  background: linear-gradient(135deg, #452829 0%, #3A1F20 50%, #2F1516 100%);
-}
-
-.melt-blob-2 {
-  width: 400px;
-  height: 400px;
-  top: 15%;
-  right: -30px;
-  animation: meltBlob2 10s ease-in-out infinite;
-  animation-delay: 1s;
-  background: linear-gradient(135deg, #452829 0%, #3D1F20 50%, #351516 100%);
-}
-
-.melt-blob-3 {
-  width: 500px;
-  height: 500px;
-  bottom: -100px;
-  left: 5%;
-  animation: meltBlob3 8s ease-in-out infinite;
-  animation-delay: 2s;
-  background: linear-gradient(135deg, #452829 0%, #3A1F20 50%, #2F1516 100%);
-}
-
-.melt-blob-4 {
-  width: 380px;
-  height: 380px;
-  top: 45%;
-  left: 45%;
-  animation: meltBlob4 11s ease-in-out infinite;
-  animation-delay: 3s;
-  background: linear-gradient(135deg, #452829 0%, #3D1F20 50%, #351516 100%);
-}
-
-.melt-blob-5 {
-  width: 420px;
-  height: 420px;
-  bottom: -50px;
-  right: 5%;
-  animation: meltBlob5 9.5s ease-in-out infinite;
-  animation-delay: 1.5s;
-  background: linear-gradient(135deg, #452829 0%, #3A1F20 50%, #2F1516 100%);
-}
-
-.melt-blob-6 {
-  width: 400px;
-  height: 400px;
-  top: 30%;
-  left: 20%;
-  animation: meltBlob6 10.5s ease-in-out infinite;
-  animation-delay: 4.5s;
-  background: linear-gradient(135deg, #452829 0%, #3D1F20 50%, #351516 100%);
-}
-
-@keyframes meltBlob1 {
-  0%, 100% {
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-  25% {
-    border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
-    transform: translate(50px, 30px) rotate(5deg) scale(1.1);
-  }
-  50% {
-    border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
-    transform: translate(30px, 80px) rotate(-5deg) scale(0.95);
-  }
-  75% {
-    border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
-    transform: translate(60px, 50px) rotate(3deg) scale(1.05);
-  }
-}
-
-@keyframes meltBlob2 {
-  0%, 100% {
-    border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-  25% {
-    border-radius: 65% 35% 80% 20% / 70% 50% 50% 30%;
-    transform: translate(-40px, 40px) rotate(-5deg) scale(1.15);
-  }
-  50% {
-    border-radius: 45% 55% 40% 60% / 50% 30% 70% 50%;
-    transform: translate(-60px, 70px) rotate(5deg) scale(0.9);
-  }
-  75% {
-    border-radius: 55% 45% 70% 30% / 60% 75% 25% 40%;
-    transform: translate(-50px, 50px) rotate(-3deg) scale(1.08);
-  }
-}
-
-@keyframes meltBlob3 {
-  0%, 100% {
-    border-radius: 35% 65% 65% 35% / 35% 35% 65% 65%;
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-  25% {
-    border-radius: 60% 40% 70% 30% / 75% 45% 55% 25%;
-    transform: translate(50px, -30px) rotate(6deg) scale(1.12);
-  }
-  50% {
-    border-radius: 48% 52% 38% 62% / 58% 32% 68% 42%;
-    transform: translate(70px, -50px) rotate(-6deg) scale(0.92);
-  }
-  75% {
-    border-radius: 42% 58% 65% 35% / 68% 70% 30% 32%;
-    transform: translate(55px, -40px) rotate(4deg) scale(1.06);
-  }
-}
-
-@keyframes meltBlob4 {
-  0%, 100% {
-    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-  25% {
-    border-radius: 70% 30% 60% 40% / 80% 60% 40% 20%;
-    transform: translate(-30px, -40px) rotate(-4deg) scale(1.18);
-  }
-  50% {
-    border-radius: 35% 65% 45% 55% / 45% 25% 75% 55%;
-    transform: translate(-40px, -60px) rotate(4deg) scale(0.88);
-  }
-  75% {
-    border-radius: 60% 40% 55% 45% / 70% 65% 35% 30%;
-    transform: translate(-35px, -50px) rotate(-2deg) scale(1.1);
-  }
-}
-
-@keyframes meltBlob5 {
-  0%, 100% {
-    border-radius: 45% 55% 55% 45% / 45% 45% 55% 55%;
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-  25% {
-    border-radius: 62% 38% 72% 28% / 68% 52% 48% 32%;
-    transform: translate(40px, 20px) rotate(5deg) scale(1.14);
-  }
-  50% {
-    border-radius: 52% 48% 40% 60% / 60% 35% 65% 40%;
-    transform: translate(60px, 40px) rotate(-5deg) scale(0.93);
-  }
-  75% {
-    border-radius: 38% 62% 58% 42% / 55% 72% 28% 45%;
-    transform: translate(50px, 30px) rotate(3deg) scale(1.07);
-  }
-}
-
-@keyframes meltBlob6 {
-  0%, 100% {
-    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-  25% {
-    border-radius: 65% 35% 60% 40% / 70% 50% 50% 30%;
-    transform: translate(-25px, 35px) rotate(-4deg) scale(1.12);
-  }
-  50% {
-    border-radius: 35% 65% 40% 60% / 30% 70% 30% 70%;
-    transform: translate(35px, -25px) rotate(4deg) scale(0.96);
-  }
-  75% {
-    border-radius: 55% 45% 65% 35% / 60% 40% 60% 40%;
-    transform: translate(-15px, 20px) rotate(-2deg) scale(1.08);
-  }
-}
-
-/* Image Hover Effects */
-.image-hover {
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.image-hover:hover {
-  transform: scale(1.1);
-  filter: brightness(1.1) saturate(1.2);
-}
-
-.image-container {
-  transition: all 0.3s ease;
-}
-
-.image-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+.page-bg {
+  background: #2C1810;
 }
 </style>
