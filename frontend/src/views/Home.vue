@@ -2,10 +2,19 @@
   <div class="home-page">
     <!-- Hero - full size -->
     <div class="home-hero relative min-h-screen w-full flex flex-col justify-center overflow-hidden" style="z-index: 1;">
-      <div class="hero-bg absolute inset-0"></div>
-      <div class="hero-overlay absolute inset-0 bg-[#2C1810]/50"></div>
+      <video
+        class="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="auto"
+      >
+        <source :src="heroVideo" type="video/mp4" />
+      </video>
+      <div class="hero-overlay absolute inset-0 bg-[#2C1810]/50 z-0"></div>
 
-      <section class="relative container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-12 sm:py-16 md:py-24">
+      <section class="relative z-10 container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-12 sm:py-16 md:py-24">
         <div class="max-w-2xl">
           <h1
             class="text-5xl md:text-7xl font-bold text-[#FBFADA] font-sansita leading-tight opacity-0 animate-fadeInUp"
@@ -39,17 +48,16 @@
 </template>
 
 <script setup>
+import heroVideo from '@/assets/srikayatoast.mp4'
 </script>
 
 <style scoped>
-.hero-bg {
+.home-hero {
   background-color: #2C1810;
-  background-image: url('@/assets/rotbakshome.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  min-width: 100%;
+}
+
+video {
+  will-change: opacity;
 }
 
 .hero-overlay {
