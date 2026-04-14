@@ -3,12 +3,16 @@
     <!-- Hero - full size -->
     <div class="home-hero relative min-h-screen w-full flex flex-col justify-center overflow-hidden" style="z-index: 1;">
       <video
+        ref="heroVideoEl"
         class="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        :class="{ 'video-ready': videoReady }"
         autoplay
         loop
         muted
         playsinline
-        preload="auto"
+        preload="metadata"
+        :poster="posterImage"
+        @canplay="onVideoReady"
       >
         <source :src="heroVideo" type="video/mp4" />
       </video>
@@ -48,7 +52,27 @@
 </template>
 
 <script setup>
-import heroVideo from '@/assets/srikayatoast.mp4'
+import { ref, onMounted } from 'vue'
+import heroVideo from '@/assets/srikayatoast-web.mp4'
+import posterImage from '@/assets/rotbakshome.jpg'
+
+const heroVideoEl = ref(null)
+const videoReady = ref(false)
+
+function onVideoReady() {
+  videoReady.value = true
+}
+
+onMounted(() => {
+  const video = heroVideoEl.value
+  if (video) {
+    // Programmatic play dengan error handling untuk mobile browsers
+    video.play().catch(() => {
+      // Autoplay blocked oleh browser — tetap tampilkan poster
+      videoReady.value = true
+    })
+  }
+})
 </script>
 
 <style scoped>
@@ -58,6 +82,12 @@ import heroVideo from '@/assets/srikayatoast.mp4'
 
 video {
   will-change: opacity;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+video.video-ready {
+  opacity: 1;
 }
 
 .hero-overlay {
