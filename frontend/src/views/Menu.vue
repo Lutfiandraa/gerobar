@@ -28,7 +28,7 @@
               Menu Kami
             </h1>
             <p class="text-lg sm:text-xl md:text-2xl text-[#FBFADA]/70 mt-3 md:mt-4 font-poppins opacity-0 animate-fadeInUp max-w-lg" style="animation-delay: 0.25s">
-              Pilihan roti bakar &amp; pancong lumer favorit, dibuat dengan cinta.
+              Pilihan roti bakar &amp; pancong lumer favorit.
             </p>
 
             <!-- Tab Switcher -->
@@ -216,57 +216,57 @@ const rotiBakarItems = [
     id: 'lotus',
     name: 'Lotus Biscoff',
     image: new URL('@/assets/lotus.jpg', import.meta.url).href,
-    caption: 'Roti bakar dengan Lotus Biscoff spread. Rasa caramel dan cinnamon yang khas.',
-    ingredients: 'Roti bakar, Lotus Biscoff spread (biskuit, karamel, kayu manis, mentega).',
+    caption: 'Roti bakar dengan Lotus Biscoff spread.',
+    ingredients: '',
   },
   {
     id: 'tiramisu',
     name: 'Tiramisu Crunchy',
     image: new URL('@/assets/tiramisu.jpg', import.meta.url).href,
-    caption: 'Perpaduan tiramisu dengan tekstur crunchy. Nikmat untuk pecinta kopi.',
-    ingredients: 'Roti bakar, mascarpone, espresso, bubuk cokelat, potongan renyah.',
+    caption: 'Perpaduan tiramisu dengan tekstur crunchy.',
+    ingredients: '',
   },
   {
     id: 'choco',
     name: 'Choco Crunchy Spread',
     image: new URL('@/assets/chcocrunchy.jpg', import.meta.url).href,
     caption: 'Cokelat lumer dengan topping crunchy. Manis dan renyah.',
-    ingredients: 'Roti bakar, olesan cokelat, pearl renyah (cokelat, gula).',
+    ingredients: '',
   },
   {
     id: 'blueberry',
     name: 'Blueberry',
     image: new URL('@/assets/blueberry.jpg', import.meta.url).href,
     caption: 'Roti bakar dengan selai blueberry. Segar dan sedikit asam.',
-    ingredients: 'Roti bakar, kompot blueberry, krim keju, mentega.',
+    ingredients: '',
   },
   {
     id: 'cheese',
     name: 'Cheese',
     image: new URL('@/assets/cheese.jpg', import.meta.url).href,
     caption: 'Keju leleh di atas roti bakar. Gurih dan lezat.',
-    ingredients: 'Roti bakar, keju leleh, mentega.',
+    ingredients: '',
   },
   {
     id: 'peanut',
     name: 'Peanut',
     image: new URL('@/assets/peanut.jpg', import.meta.url).href,
     caption: 'Selai kacang dengan aroma roasted. Gurih dan mengenyangkan.',
-    ingredients: 'Roti bakar, selai kacang, madu, kacang sangrai.',
+    ingredients: '',
   },
   {
     id: 'greentea',
     name: 'Green Tea',
     image: new URL('@/assets/greentea.jpg', import.meta.url).href,
     caption: 'Matcha dan white chocolate. Lembut dan tidak terlalu manis.',
-    ingredients: 'Roti bakar, matcha, cokelat putih, krim.',
+    ingredients: '',
   },
   {
     id: 'strawberry',
     name: 'Strawberry',
     image: new URL('@/assets/strawberry.jpg', import.meta.url).href,
     caption: 'Strawberry segar dengan cream. Manis dan segar.',
-    ingredients: 'Roti bakar, stroberi, krim, olesan manis.',
+    ingredients: '',
   },
 ];
 
