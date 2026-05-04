@@ -66,7 +66,7 @@
 
 /* Page Background */
 .page-bg {
-  background: #2C1810;
+  background: linear-gradient(135deg, #140b07 0%, #381c11 30%, #613b24 55%, #3c2014 80%, #1a0c07 100%);
 }
 
 /* Image Hover Effects */

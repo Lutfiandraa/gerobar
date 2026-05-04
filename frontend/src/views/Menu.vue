@@ -88,7 +88,10 @@
                       :alt="rotiBakarItems[0].name"
                       class="w-full h-full object-cover"
                     />
-                    <div class="featured-badge">
+                    <div class="featured-badge flex items-center gap-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-[#FBFADA]">
+                        <path fill-rule="evenodd" d="M10.788 3.211a1.23 1.23 0 0 1 2.424 0l2.082 5.006 5.404.434a1.228 1.228 0 0 1 .682 2.157l-4.106 3.528 1.246 5.342a1.228 1.228 0 0 1-1.808 1.314L12 18.261l-4.712 2.731a1.228 1.228 0 0 1-1.808-1.314l1.246-5.342-4.106-3.528a1.228 1.228 0 0 1 .682-2.157l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+                      </svg>
                       <span>Favorit</span>
                     </div>
                   </div>
@@ -99,9 +102,9 @@
                     <p class="text-xs text-[#C49A6C]/80 font-poppins mt-4 leading-relaxed">{{ rotiBakarItems[0].ingredients }}</p>
                     <router-link
                       to="/shop"
-                      class="featured-cta mt-6"
+                      class="pancong-cta mt-6"
                     >
-                      Pesan Sekarang →
+                      Pesan →
                     </router-link>
                   </div>
                 </div>
@@ -121,14 +124,14 @@
                       :alt="item.name"
                       class="w-full h-full object-cover"
                     />
-                    <div class="card-overlay">
-                      <router-link to="/shop" class="card-order-btn">Pesan</router-link>
-                    </div>
                   </div>
                   <div class="card-body">
                     <h3 class="card-title">{{ item.name }}</h3>
                     <p class="card-caption">{{ item.caption }}</p>
                     <p class="card-ingredients">{{ item.ingredients }}</p>
+                    <router-link to="/shop" class="pancong-cta mt-4">
+                      Pesan →
+                    </router-link>
                   </div>
                 </article>
               </div>
@@ -276,21 +279,21 @@ const pancongItems = [
     name: 'Pancong Milo',
     image: new URL('@/assets/pancong1.jpg', import.meta.url).href,
     caption: 'Pancong lumer dengan Milo. Rasa cokelat malt yang khas dan manis.',
-    ingredients: 'Pancong, Milo (bubuk cokelat malt), susu kental manis, mentega.',
+    ingredients: '',
   },
   {
     id: 'keju-susu',
     name: 'Pancong Keju Susu Klasik',
     image: new URL('@/assets/pancong2.jpg', import.meta.url).href,
     caption: 'Pancong klasik dengan keju leleh dan susu. Gurih dan legit.',
-    ingredients: 'Pancong, keju, susu kental manis, mentega.',
+    ingredients: '',
   },
   {
     id: 'coklat-keju',
     name: 'Pancong Coklat Keju',
     image: new URL('@/assets/pancong3.jpg', import.meta.url).href,
     caption: 'Perpaduan cokelat dan keju leleh. Manis dan gurih berpadu.',
-    ingredients: 'Pancong, cokelat, keju, susu kental manis, mentega.',
+    ingredients: '',
   },
 ];
 </script>
@@ -303,12 +306,12 @@ const pancongItems = [
 
 /* ===== Page Background ===== */
 .page-bg {
-  background: #1E110A;
+  background: linear-gradient(135deg, #140b07 0%, #381c11 30%, #613b24 55%, #3c2014 80%, #1a0c07 100%);
 }
 
 /* ===== Hero Section ===== */
 .menu-hero {
-  background: linear-gradient(165deg, #3D2316 0%, #2C1810 40%, #1E110A 100%);
+  background: transparent;
   position: relative;
 }
 
@@ -420,7 +423,7 @@ const pancongItems = [
 
 /* ===== Menu Content Area ===== */
 .menu-content {
-  background: #1E110A;
+  background: transparent;
 }
 
 /* ===== Section Header ===== */
@@ -504,27 +507,6 @@ const pancongItems = [
   }
 }
 
-.featured-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 12px 28px;
-  background: linear-gradient(135deg, #C49A6C, #8B5E3C);
-  border-radius: 60px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: #FBFADA;
-  transition: all 0.3s ease;
-  width: fit-content;
-  box-shadow: 0 4px 15px rgba(196, 154, 108, 0.25);
-}
-
-.featured-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(196, 154, 108, 0.35);
-}
-
 /* ===== Menu Grid ===== */
 .menu-grid {
   display: grid;
@@ -576,45 +558,10 @@ const pancongItems = [
   transform: scale(1.08);
 }
 
-.card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(30, 17, 10, 0.8), transparent 60%);
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding: 16px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.menu-card:hover .card-overlay {
-  opacity: 1;
-}
-
-.card-order-btn {
-  padding: 8px 20px;
-  background: rgba(251, 250, 218, 0.95);
-  color: #2C1810;
-  border-radius: 30px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  transform: translateY(8px);
-}
-
-.menu-card:hover .card-order-btn {
-  transform: translateY(0);
-}
-
-.card-order-btn:hover {
-  background: #FBFADA;
-  box-shadow: 0 4px 12px rgba(251, 250, 218, 0.3);
-}
-
 .card-body {
-  padding: 20px;
+  padding: 20px 20px 24px;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-title {

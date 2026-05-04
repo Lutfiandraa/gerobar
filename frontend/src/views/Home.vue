@@ -36,7 +36,7 @@
             class="text-base md:text-lg mt-2 text-[#FBFADA]/80 font-poppins opacity-0 animate-fadeInUp"
             style="animation-delay: 0.45s"
           >
-            Pesan terlebih dahulu untuk diambil di Warpol Graha Bunga.
+            Pesan terlebih dahulu untuk ambil di Warpol Graha Bunga.
           </p>
           <router-link
             to="/shop"
