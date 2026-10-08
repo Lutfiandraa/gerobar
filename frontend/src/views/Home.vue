@@ -94,21 +94,6 @@ video.video-ready {
   pointer-events: none;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeInUp {
-  animation: fadeInUp 0.8s ease forwards;
-}
-
 .font-sansita {
   font-family: 'Sansita Swashed', cursive;
 }

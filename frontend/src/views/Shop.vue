@@ -98,45 +98,4 @@ import { ref } from "vue";
 
 const isOpen = ref(false);
 </script>
-
-<style scoped>
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeInUp {
-  animation: fadeInUp 0.8s ease forwards;
-}
-
-/* Page Background */
-.page-bg {
-  background: linear-gradient(135deg, #140b07 0%, #381c11 30%, #613b24 55%, #3c2014 80%, #1a0c07 100%);
-}
-
-/* Image Hover Effects */
-.image-hover {
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.image-hover:hover {
-  transform: scale(1.1);
-  filter: brightness(1.1) saturate(1.2);
-}
-
-.image-container {
-  transition: all 0.3s ease;
-}
-
-.image-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-</style>
+
